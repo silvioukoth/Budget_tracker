@@ -94,13 +94,19 @@ h3 {
    Header
 ================================ */
 
+
 .site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
 
     background-color: var(--heading-color);
-    border-bottom: 4px solid var(--primary-color);
+
+    /* Remove teal line under header */
+    border-bottom: none;
+
+    /* Keep header clean and dark */
+    box-shadow: none;
 }
 
 .header-content {
@@ -138,7 +144,6 @@ h3 {
 .main-nav a:hover {
     color: #5eead4;
 }
-
 
 /* ================================
    Main Sections
