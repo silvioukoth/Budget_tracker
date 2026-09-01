@@ -95,6 +95,10 @@ h3 {
 ================================ */
 
 .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     background-color: var(--heading-color);
     border-bottom: 4px solid var(--primary-color);
 }
