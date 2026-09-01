@@ -163,3 +163,34 @@ transactionForm.addEventListener("submit", function(event) {
 // ==========================================
 
 renderTable();
+
+
+// ================================
+// Hamburger Menu
+// ================================
+
+const hamburger = document.getElementById("hamburger");
+const mainNav = document.getElementById("main-nav");
+
+hamburger.addEventListener("click", () => {
+    mainNav.classList.toggle("active");
+
+    if (mainNav.classList.contains("active")) {
+        hamburger.textContent = "✕";
+        hamburger.setAttribute("aria-label", "Close navigation");
+    } else {
+        hamburger.textContent = "☰";
+        hamburger.setAttribute("aria-label", "Open navigation");
+    }
+});
+
+// Close menu after clicking a navigation link
+const navLinks = document.querySelectorAll(".main-nav a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        mainNav.classList.remove("active");
+        hamburger.textContent = "☰";
+        hamburger.setAttribute("aria-label", "Open navigation");
+    });
+});

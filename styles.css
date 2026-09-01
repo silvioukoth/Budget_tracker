@@ -668,3 +668,59 @@ section {
         padding: 12px 8px;
     }
 }
+
+
+/* ================================
+   Hamburger Menu
+================================ */
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: inherit;
+    padding: 5px;
+}
+
+/* ================================
+   Mobile Navigation
+================================ */
+
+@media (max-width: 768px) {
+
+    .header-content {
+        position: relative;
+    }
+
+    .hamburger {
+        display: block;
+        margin-left: auto;
+    }
+
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 0;
+        background: inherit;
+        z-index: 1000;
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .main-nav a {
+        display: block;
+        width: 100%;
+        padding: 12px 10px;
+        text-align: center;
+    }
+}
