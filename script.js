@@ -1,191 +1,112 @@
-// ========================================
-// BUDGET TRACK - EXPENSE TRACKER
-// JavaScript Week 7
-// ========================================
+// ==========================================
+// PERSONAL BUDGET & EXPENSE TRACKER
+// Week 7 - JavaScript Interactivity
+// ==========================================
 
 
-// ========================================
-// PART 1: STORE EXPENSES AS AN ARRAY
-// OF OBJECTS
-// ========================================
+// ==========================================
+// PART 1: ARRAY OF EXPENSE OBJECTS
+// ==========================================
 
-let transactions = [
+let expenses = [
     {
-        description: "Groceries",
+        name: "Groceries",
         amount: 5000,
-        category: "Food",
-        date: "2026-08-01",
-        type: "expense"
+        category: "Food"
     },
     {
-        description: "Transport",
+        name: "Transport",
         amount: 3000,
-        category: "Transport",
-        date: "2026-08-05",
-        type: "expense"
+        category: "Transport"
     },
     {
-        description: "Monthly Rent",
+        name: "Rent",
         amount: 15000,
-        category: "Rent",
-        date: "2026-08-01",
-        type: "expense"
+        category: "Rent"
     },
     {
-        description: "Internet",
+        name: "Internet",
         amount: 2500,
-        category: "Utilities",
-        date: "2026-08-10",
-        type: "expense"
+        category: "Utilities"
     },
     {
-        description: "School Supplies",
+        name: "School Supplies",
         amount: 4000,
-        category: "Education",
-        date: "2026-08-12",
-        type: "expense"
-    },
-    {
-        description: "Salary",
-        amount: 60000,
-        category: "Other",
-        date: "2026-08-01",
-        type: "income"
+        category: "Education"
     }
 ];
 
 
-// ========================================
+// ==========================================
 // PART 2: CALCULATE TOTAL EXPENSES
-// ========================================
+// ==========================================
 
-function calculateTotalExpenses() {
+function calculateTotal() {
 
-    const total = transactions
-        .filter(transaction => transaction.type === "expense")
-        .reduce((sum, transaction) => {
-            return sum + transaction.amount;
-        }, 0);
+    const total = expenses.reduce(function(sum, expense) {
+        return sum + expense.amount;
+    }, 0);
 
-    // Round to 2 decimal places
+    // Round the result to 2 decimal places
     return Math.round(total * 100) / 100;
 }
 
 
-// ========================================
-// CALCULATE TOTAL INCOME
-// ========================================
+// ==========================================
+// PART 3: RENDER EXPENSES TO THE DOM
+// ==========================================
 
-function calculateTotalIncome() {
-
-    const total = transactions
-        .filter(transaction => transaction.type === "income")
-        .reduce((sum, transaction) => {
-            return sum + transaction.amount;
-        }, 0);
-
-    return Math.round(total * 100) / 100;
-}
-
-
-// ========================================
-// CALCULATE BALANCE
-// ========================================
-
-function calculateBalance() {
-
-    const income = calculateTotalIncome();
-    const expenses = calculateTotalExpenses();
-
-    return Math.round((income - expenses) * 100) / 100;
-}
-
-
-// ========================================
-// PART 3: RENDER TRANSACTIONS TO DOM
-// ========================================
-
-function renderTransactions() {
+function renderTable() {
 
     const transactionsList =
         document.querySelector("#transactions-list");
 
-    // Clear existing table contents
+    // Clear existing table rows
     transactionsList.innerHTML = "";
 
-    // Loop through the array
-    transactions.forEach((transaction, index) => {
+    // Create a table row for every expense
+    expenses.forEach(function(expense) {
 
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${transaction.description}</td>
-
-            <td>${transaction.category}</td>
-
-            <td>${transaction.date}</td>
-
-            <td>
-                ${transaction.type === "income"
-                    ? "Income"
-                    : "Expense"}
-            </td>
-
-            <td>
-                KSh ${transaction.amount.toFixed(2)}
-            </td>
-
-            <td>
-                <button
-                    class="delete-btn"
-                    data-index="${index}"
-                    type="button"
-                >
-                    Delete
-                </button>
-            </td>
+            <td>${expense.name}</td>
+            <td>${expense.category}</td>
+            <td>-</td>
+            <td>Expense</td>
+            <td>KSh ${expense.amount.toFixed(2)}</td>
+            <td>-</td>
         `;
 
         transactionsList.appendChild(row);
     });
 
-    // Update summary cards
-    updateSummary();
 
-    // Update budget section
-    updateBudgets();
-}
-
-
-// ========================================
-// UPDATE SUMMARY CARDS
-// ========================================
-
-function updateSummary() {
-
-    const totalIncome =
-        document.querySelector("#total-income");
-
+    // Update total expenses
     const totalExpenses =
         document.querySelector("#total-expenses");
 
+    totalExpenses.textContent =
+        `KSh ${calculateTotal().toFixed(2)}`;
+
+
+    // Update remaining balance
     const remainingBalance =
         document.querySelector("#remaining-balance");
 
-    totalIncome.textContent =
-        `KSh ${calculateTotalIncome().toFixed(2)}`;
+    const monthlyBudget = 60000;
 
-    totalExpenses.textContent =
-        `KSh ${calculateTotalExpenses().toFixed(2)}`;
+    const balance =
+        monthlyBudget - calculateTotal();
 
     remainingBalance.textContent =
-        `KSh ${calculateBalance().toFixed(2)}`;
+        `KSh ${balance.toFixed(2)}`;
 }
 
 
-// ========================================
-// PART 4: ADD TRANSACTION EVENT
-// ========================================
+// ==========================================
+// PART 4: FORM SUBMIT EVENT LISTENER
+// ==========================================
 
 const transactionForm =
     document.querySelector("#transaction-form");
@@ -193,8 +114,9 @@ const transactionForm =
 
 transactionForm.addEventListener("submit", function(event) {
 
-    // Prevent page refresh
+    // Prevent the page from refreshing
     event.preventDefault();
+
 
     // Get values from the form
     const type =
@@ -209,42 +131,25 @@ transactionForm.addEventListener("submit", function(event) {
     const amount =
         Number(document.querySelector("#amount").value);
 
-    const date =
-        document.querySelector("#date").value;
+
+    // Only add expenses to the expense array
+    if (type === "expense") {
+
+        // Create a new expense object
+        const newExpense = {
+            name: description,
+            amount: amount,
+            category: category
+        };
 
 
-    // Validate the form
-    if (
-        description === "" ||
-        amount <= 0 ||
-        date === ""
-    ) {
-        alert("Please enter valid transaction details.");
-        return;
+        // Add the new expense to the array
+        expenses.push(newExpense);
+
+
+        // Rebuild the table
+        renderTable();
     }
-
-
-    // Create a new transaction object
-    const newTransaction = {
-
-        description: description,
-
-        amount: amount,
-
-        category: category,
-
-        date: date,
-
-        type: type
-    };
-
-
-    // Add the new object to the array
-    transactions.push(newTransaction);
-
-
-    // Re-render the table
-    renderTransactions();
 
 
     // Clear the form
@@ -253,308 +158,8 @@ transactionForm.addEventListener("submit", function(event) {
 });
 
 
-// ========================================
-// DELETE TRANSACTION
-// ========================================
-
-document
-    .querySelector("#transactions-list")
-    .addEventListener("click", function(event) {
-
-        if (event.target.classList.contains("delete-btn")) {
-
-            const index =
-                Number(event.target.dataset.index);
-
-            transactions.splice(index, 1);
-
-            renderTransactions();
-        }
-
-    });
-
-
-// ========================================
-// CLEAR ALL TRANSACTIONS
-// ========================================
-
-const clearAllButton =
-    document.querySelector("#clear-all");
-
-
-clearAllButton.addEventListener("click", function() {
-
-    if (transactions.length === 0) {
-        return;
-    }
-
-    const confirmation =
-        confirm("Are you sure you want to clear all transactions?");
-
-    if (confirmation) {
-
-        transactions = [];
-
-        renderTransactions();
-    }
-
-});
-
-
-// ========================================
-// FILTER BY TYPE
-// ========================================
-
-const filterType =
-    document.querySelector("#filter-type");
-
-
-filterType.addEventListener("change", function() {
-
-    applyFilters();
-
-});
-
-
-// ========================================
-// FILTER BY CATEGORY
-// ========================================
-
-const filterCategory =
-    document.querySelector("#filter-category");
-
-
-filterCategory.addEventListener("change", function() {
-
-    applyFilters();
-
-});
-
-
-// ========================================
-// APPLY FILTERS
-// ========================================
-
-function applyFilters() {
-
-    const selectedType =
-        filterType.value;
-
-    const selectedCategory =
-        filterCategory.value;
-
-
-    const transactionsList =
-        document.querySelector("#transactions-list");
-
-    transactionsList.innerHTML = "";
-
-
-    transactions.forEach((transaction, index) => {
-
-        // Type filter
-        if (
-            selectedType !== "all" &&
-            transaction.type !== selectedType
-        ) {
-            return;
-        }
-
-
-        // Category filter
-        if (
-            selectedCategory !== "all" &&
-            transaction.category !== selectedCategory
-        ) {
-            return;
-        }
-
-
-        const row =
-            document.createElement("tr");
-
-
-        row.innerHTML = `
-            <td>${transaction.description}</td>
-
-            <td>${transaction.category}</td>
-
-            <td>${transaction.date}</td>
-
-            <td>
-                ${transaction.type === "income"
-                    ? "Income"
-                    : "Expense"}
-            </td>
-
-            <td>
-                KSh ${transaction.amount.toFixed(2)}
-            </td>
-
-            <td>
-                <button
-                    class="delete-btn"
-                    data-index="${index}"
-                    type="button"
-                >
-                    Delete
-                </button>
-            </td>
-        `;
-
-
-        transactionsList.appendChild(row);
-
-    });
-
-}
-
-
-// ========================================
-// UPDATE MONTHLY BUDGETS
-// ========================================
-
-function updateBudgets() {
-
-    const budgets = {
-        Food: 15000,
-        Transport: 8000,
-        Rent: 15000,
-        Education: 12000
-    };
-
-
-    Object.keys(budgets).forEach(category => {
-
-        const spent = transactions
-            .filter(transaction =>
-                transaction.type === "expense" &&
-                transaction.category === category
-            )
-            .reduce((sum, transaction) => {
-                return sum + transaction.amount;
-            }, 0);
-
-
-        const budget = budgets[category];
-
-        const percentage =
-            Math.min((spent / budget) * 100, 100);
-
-
-        const categoryId =
-            category.toLowerCase();
-
-
-        const textElement =
-            document.querySelector(
-                `#${categoryId}-budget-text`
-            );
-
-
-        const progressElement =
-            document.querySelector(
-                `#${categoryId}-progress`
-            );
-
-
-        if (textElement) {
-
-            textElement.textContent =
-                `KSh ${spent.toFixed(2)} / KSh ${budget.toLocaleString()}`;
-
-        }
-
-
-        if (progressElement) {
-
-            progressElement.style.width =
-                `${percentage}%`;
-
-        }
-
-    });
-
-}
-
-
-// ========================================
-// SET CURRENT DATE
-// ========================================
-
-function setCurrentDate() {
-
-    const dateInput =
-        document.querySelector("#date");
-
-    if (dateInput) {
-
-        const today =
-            new Date().toISOString().split("T")[0];
-
-        dateInput.value = today;
-
-    }
-
-}
-
-
-// ========================================
-// SET CURRENT MONTH
-// ========================================
-
-function setCurrentMonth() {
-
-    const monthElement =
-        document.querySelector("#current-month");
-
-    if (!monthElement) {
-        return;
-    }
-
-    const currentDate = new Date();
-
-    const monthName =
-        currentDate.toLocaleString("en-US", {
-            month: "long"
-        });
-
-    const year =
-        currentDate.getFullYear();
-
-    monthElement.textContent =
-        `${monthName} ${year}`;
-
-}
-
-
-// ========================================
-// FOOTER YEAR
-// ========================================
-
-function setFooterYear() {
-
-    const footerYear =
-        document.querySelector("#footer-year");
-
-    if (footerYear) {
-
-        footerYear.textContent =
-            new Date().getFullYear();
-
-    }
-
-}
-
-
-// ========================================
-// INITIALIZE APPLICATION
-// ========================================
-
-setCurrentDate();
-
-setCurrentMonth();
-
-setFooterYear();
-
-renderTransactions();
+// ==========================================
+// INITIAL RENDER
+// ==========================================
+
+renderTable();
