@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Personal Budget & Expense Tracker</title>
+<title>Personal Budget & Expense Tracker</title>
 
-    <!-- Favicon --> <link rel="icon" type="image/png" href="favicon.png" >
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
 
 <!-- Open Graph Meta Tags -->
 <meta
@@ -23,420 +26,712 @@
     property="og:type"
     content="website"
 >
+
 <meta
     property="og:url"
     content="https://silvioukoth.github.io/Budget_tracker/"
 >
+
 <meta
     property="og:image"
     content="favicon.png"
 >
+
 <meta
     property="og:site_name"
     content="BudgetTrack"
 >
 
+<!-- Bootstrap CSS -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
 
-    <link rel="stylesheet" href="styles.css">
+<!-- Google Fonts -->
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-content">
+<!-- ================================
+     Header
+================================= -->
 
-            <div class="logo">
-                <h1>BudgetTrack</h1>
-                <p>Personal Budget & Expense Tracker</p>
-            </div>
+<header class="site-header">
 
-            <button class="hamburger" id="hamburger" aria-label="Open navigation">
-            ☰
-            </button>
+    <div class="container header-content">
 
-            <nav class="main-nav">
-                <a href="#dashboard">Dashboard</a>
-                <a href="#transactions">Transactions</a>
-                <a href="#budget">Budget</a>
-            </nav>
+        <div class="logo">
+
+            <h1>BudgetTrack</h1>
+
+            <p>Personal Budget & Expense Tracker</p>
 
         </div>
-    </header>
 
 
-    <!-- Main -->
-    <main class="container">
+        <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="Open navigation"
+            type="button"
+        >
+            ☰
+        </button>
 
-        <!-- Dashboard -->
-        <section id="dashboard" class="dashboard-section">
 
-            <div class="section-heading">
+        <nav
+            class="main-nav"
+            id="main-nav"
+        >
+
+            <a href="#dashboard">
+                Dashboard
+            </a>
+
+            <a href="#transactions">
+                Transactions
+            </a>
+
+            <a href="#budget">
+                Budget
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     Main
+================================= -->
+
+<main class="container">
+
+    <!-- Dashboard -->
+
+    <section
+        id="dashboard"
+        class="dashboard-section"
+    >
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Financial Overview</h2>
+
+                <p>
+                    Keep track of your money and spending.
+                </p>
+
+            </div>
+
+
+            <span
+                class="current-month"
+                id="current-month"
+            >
+                September 2026
+            </span>
+
+        </div>
+
+
+        <!-- Bootstrap Grid -->
+
+        <div class="summary-cards row g-3">
+
+            <article class="summary-card income-card col-lg-3 col-md-6">
+
+                <div class="card-icon">
+                    +
+                </div>
+
                 <div>
-                    <h2>Financial Overview</h2>
-                    <p>Keep track of your money and spending.</p>
+
+                    <p>Total Income</p>
+
+                    <h3 id="total-income">
+                        KSh 0.00
+                    </h3>
+
                 </div>
 
-                <span class="current-month" id="current-month">
-                    August 2026
-                </span>
-            </div>
+            </article>
 
 
-            <div class="summary-cards">
+            <article class="summary-card expense-card col-lg-3 col-md-6">
 
-                <article class="summary-card income-card">
-                    <div class="card-icon">+</div>
+                <div class="card-icon">
+                    −
+                </div>
 
-                    <div>
-                        <p>Total Income</p>
-                        <h3 id="total-income">KSh 0</h3>
-                    </div>
-                </article>
-
-
-                <article class="summary-card expense-card">
-                    <div class="card-icon">−</div>
-
-                    <div>
-                        <p>Total Expenses</p>
-                        <h3 id="total-expenses">KSh 0</h3>
-                    </div>
-                </article>
-
-
-                <article class="summary-card balance-card">
-                    <div class="card-icon">=</div>
-
-                    <div>
-                        <p>Remaining Balance</p>
-                        <h3 id="remaining-balance">KSh 0</h3>
-                    </div>
-                </article>
-
-
-                <article class="summary-card budget-card">
-                    <div class="card-icon">%</div>
-
-                    <div>
-                        <p>Monthly Budget</p>
-                        <h3 id="monthly-budget">KSh 60,000</h3>
-                    </div>
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- Add Transaction -->
-        <section class="transaction-form-section">
-
-            <div class="section-heading">
                 <div>
-                    <h2>Add Transaction</h2>
-                    <p>Record your income or expenses.</p>
+
+                    <p>Total Expenses</p>
+
+                    <h3 id="total-expenses">
+                        KSh 0.00
+                    </h3>
+
                 </div>
+
+            </article>
+
+
+            <article class="summary-card balance-card col-lg-3 col-md-6">
+
+                <div class="card-icon">
+                    =
+                </div>
+
+                <div>
+
+                    <p>Remaining Balance</p>
+
+                    <h3 id="remaining-balance">
+                        KSh 0.00
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card budget-card col-lg-3 col-md-6">
+
+                <div class="card-icon">
+                    %
+                </div>
+
+                <div>
+
+                    <p>Monthly Budget</p>
+
+                    <h3 id="monthly-budget">
+                        KSh 60,000.00
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         Add Transaction
+    ================================= -->
+
+    <section class="transaction-form-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Add Transaction</h2>
+
+                <p>
+                    Record your income or expenses.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="transaction-form row g-3"
+            id="transaction-form"
+        >
+
+            <div class="form-group col-md-6">
+
+                <label for="transaction-type">
+                    Type
+                </label>
+
+                <select
+                    id="transaction-type"
+                    class="form-select"
+                    required
+                >
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                </select>
+
             </div>
 
 
-            <form class="transaction-form" id="transaction-form">
+            <div class="form-group col-md-6">
 
-                <div class="form-group">
-                    <label for="transaction-type">Type</label>
+                <label for="description">
+                    Description
+                </label>
 
-                    <select id="transaction-type" required>
-                        <option value="expense">Expense</option>
-                        <option value="income">Income</option>
-                    </select>
-                </div>
+                <input
+                    type="text"
+                    id="description"
+                    class="form-control"
+                    placeholder="e.g. Groceries"
+                    required
+                >
 
-
-                <div class="form-group">
-                    <label for="description">Description</label>
-
-                    <input
-                        type="text"
-                        id="description"
-                        placeholder="e.g. Groceries"
-                        required
-                    >
-                </div>
+            </div>
 
 
-                <div class="form-group">
-                    <label for="category">Category</label>
+            <div class="form-group col-md-4">
 
-                    <select id="category" required>
-                        <option value="Food">Food</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Rent">Rent</option>
-                        <option value="Utilities">Utilities</option>
-                        <option value="Shopping">Shopping</option>
-                        <option value="Education">Education</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
+                <label for="category">
+                    Category
+                </label>
+
+                <select
+                    id="category"
+                    class="form-select"
+                    required
+                >
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Rent">
+                        Rent
+                    </option>
+
+                    <option value="Utilities">
+                        Utilities
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Education">
+                        Education
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
 
 
-                <div class="form-group">
-                    <label for="amount">Amount</label>
+            <div class="form-group col-md-4">
 
-                    <input
-                        type="number"
-                        id="amount"
-                        placeholder="0.00"
-                        min="1"
-                        step="0.01"
-                        required
-                    >
-                </div>
+                <label for="amount">
+                    Amount
+                </label>
 
+                <input
+                    type="number"
+                    id="amount"
+                    class="form-control"
+                    placeholder="0.00"
+                    min="1"
+                    step="0.01"
+                    required
+                >
 
-                <div class="form-group">
-                    <label for="date">Date</label>
-
-                    <input
-                        type="date"
-                        id="date"
-                        required
-                    >
-                </div>
+            </div>
 
 
-                <button type="submit" class="btn-primary">
+            <div class="form-group col-md-4">
+
+                <label for="date">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <div class="col-12">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-custom-primary"
+                >
                     Add Transaction
                 </button>
 
-            </form>
+            </div>
 
-        </section>
+        </form>
+
+    </section>
 
 
-        <!-- Transactions -->
-        <section id="transactions" class="transactions-section">
+    <!-- ================================
+         Transactions
+    ================================= -->
 
-            <div class="section-heading">
+    <section
+        id="transactions"
+        class="transactions-section"
+    >
 
-                <div>
-                    <h2>Recent Transactions</h2>
-                    <p>Your latest income and expenses.</p>
-                </div>
+        <div class="section-heading">
 
-                <button
-                    class="btn-secondary"
-                    id="clear-all"
-                    type="button"
-                >
-                    Clear All
-                </button>
+            <div>
+
+                <h2>Recent Transactions</h2>
+
+                <p>
+                    Your latest income and expenses.
+                </p>
 
             </div>
 
 
-            <!-- Filters -->
-            <div class="filters">
-
-                <div class="form-group">
-                    <label for="filter-type">Filter by Type</label>
-
-                    <select id="filter-type">
-                        <option value="all">All</option>
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="filter-category">Filter by Category</label>
-
-                    <select id="filter-category">
-
-                        <option value="all">All Categories</option>
-
-                        <option value="Food">Food</option>
-
-                        <option value="Transport">
-                            Transport
-                        </option>
-
-                        <option value="Rent">
-                            Rent
-                        </option>
-
-                        <option value="Utilities">
-                            Utilities
-                        </option>
-
-                        <option value="Shopping">
-                            Shopping
-                        </option>
-
-                        <option value="Education">
-                            Education
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-                </div>
-
-            </div>
-
-
-            <div class="table-container">
-
-                <table class="transactions-table">
-
-                    <thead>
-
-                        <tr>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>Action</th>
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="transactions-list">
-                        <!-- JavaScript adds transactions here -->
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </section>
-
-
-        <!-- Budget -->
-        <section id="budget" class="budget-section">
-
-            <div class="section-heading">
-
-                <div>
-                    <h2>Monthly Budget</h2>
-
-                    <p>
-                        Monitor how much you are spending in each category.
-                    </p>
-                </div>
-
-            </div>
-
-
-            <div class="budget-list">
-
-                <div class="budget-item">
-
-                    <div class="budget-info">
-                        <span>Food</span>
-
-                        <strong id="food-budget-text">
-                            KSh 0 / KSh 15,000
-                        </strong>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div
-                            class="progress food-progress"
-                            id="food-progress"
-                        ></div>
-                    </div>
-
-                </div>
-
-
-                <div class="budget-item">
-
-                    <div class="budget-info">
-                        <span>Transport</span>
-
-                        <strong id="transport-budget-text">
-                            KSh 0 / KSh 8,000
-                        </strong>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div
-                            class="progress transport-progress"
-                            id="transport-progress"
-                        ></div>
-                    </div>
-
-                </div>
-
-
-                <div class="budget-item">
-
-                    <div class="budget-info">
-                        <span>Rent</span>
-
-                        <strong id="rent-budget-text">
-                            KSh 0 / KSh 15,000
-                        </strong>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div
-                            class="progress rent-progress"
-                            id="rent-progress"
-                        ></div>
-                    </div>
-
-                </div>
-
-
-                <div class="budget-item">
-
-                    <div class="budget-info">
-                        <span>Education</span>
-
-                        <strong id="education-budget-text">
-                            KSh 0 / KSh 12,000
-                        </strong>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div
-                            class="progress education-progress"
-                            id="education-progress"
-                        ></div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- Footer -->
-    <footer class="site-footer">
-
-        <div class="container">
-
-            <p>
-                &copy; <span id="footer-year">2026</span>
-                BudgetTrack. Personal Budget & Expense Tracker.
-            </p>
+            <button
+                class="btn btn-secondary"
+                id="clear-all"
+                type="button"
+            >
+                Clear All
+            </button>
 
         </div>
 
-    </footer>
+
+        <!-- Filters -->
+
+        <div class="filters row g-3">
+
+            <div class="form-group col-md-6">
+
+                <label for="filter-type">
+                    Filter by Type
+                </label>
+
+                <select
+                    id="filter-type"
+                    class="form-select"
+                >
+
+                    <option value="all">
+                        All
+                    </option>
+
+                    <option value="income">
+                        Income
+                    </option>
+
+                    <option value="expense">
+                        Expense
+                    </option>
+
+                </select>
+
+            </div>
 
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+            <div class="form-group col-md-6">
+
+                <label for="filter-category">
+                    Filter by Category
+                </label>
+
+                <select
+                    id="filter-category"
+                    class="form-select"
+                >
+
+                    <option value="all">
+                        All Categories
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Rent">
+                        Rent
+                    </option>
+
+                    <option value="Utilities">
+                        Utilities
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Education">
+                        Education
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container mt-4">
+
+            <table class="transactions-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Description</th>
+
+                        <th>Category</th>
+
+                        <th>Date</th>
+
+                        <th>Type</th>
+
+                        <th>Amount</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="transactions-list">
+
+                    <!-- JavaScript renders transactions here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================
+         Budget
+    ================================= -->
+
+    <section
+        id="budget"
+        class="budget-section"
+    >
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Monthly Budget</h2>
+
+                <p>
+                    Monitor how much you are spending in each category.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="budget-list">
+
+            <!-- Food -->
+
+            <div class="budget-item">
+
+                <div class="budget-info">
+
+                    <span>
+                        Food
+                    </span>
+
+                    <strong id="food-budget-text">
+                        KSh 0 / KSh 15,000
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress food-progress"
+                        id="food-progress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Transport -->
+
+            <div class="budget-item">
+
+                <div class="budget-info">
+
+                    <span>
+                        Transport
+                    </span>
+
+                    <strong id="transport-budget-text">
+                        KSh 0 / KSh 8,000
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress transport-progress"
+                        id="transport-progress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Rent -->
+
+            <div class="budget-item">
+
+                <div class="budget-info">
+
+                    <span>
+                        Rent
+                    </span>
+
+                    <strong id="rent-budget-text">
+                        KSh 0 / KSh 15,000
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress rent-progress"
+                        id="rent-progress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Education -->
+
+            <div class="budget-item">
+
+                <div class="budget-info">
+
+                    <span>
+                        Education
+                    </span>
+
+                    <strong id="education-budget-text">
+                        KSh 0 / KSh 12,000
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress education-progress"
+                        id="education-progress"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================================
+     Footer
+================================= -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <p>
+
+            &copy;
+            <span id="footer-year">
+                2026
+            </span>
+
+            BudgetTrack.
+            Personal Budget & Expense Tracker.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- Bootstrap JavaScript -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- Main JavaScript as ES Module -->
+
+<script
+    type="module"
+    src="script.js"
+></script>
 
 </body>
+
 </html>

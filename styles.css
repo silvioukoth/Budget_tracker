@@ -571,23 +571,6 @@ section {
     transition: width 0.3s ease;
 }
 
-.food-progress {
-    width: 57%;
-}
-
-.transport-progress {
-    width: 50%;
-}
-
-.rent-progress {
-    width: 100%;
-}
-
-.education-progress {
-    width: 83%;
-}
-
-
 /* ================================
    Footer
 ================================ */
@@ -723,4 +706,141 @@ section {
         padding: 12px 10px;
         text-align: center;
     }
+}
+
+/* ================================
+Bootstrap Integration
+================================ */
+
+.btn-custom-primary {
+background-color: var(--primary-color);
+border-color: var(--primary-color);
+font-weight: 600;
+padding: 12px 20px;
+border-radius: var(--small-radius);
+}
+
+.btn-custom-primary:hover {
+background-color: var(--primary-dark);
+border-color: var(--primary-dark);
+}
+
+/* ================================
+Bootstrap Form Improvements
+================================ */
+
+.form-control,
+.form-select {
+border-color: #cbd5e1;
+border-radius: var(--small-radius);
+padding: 12px 14px;
+}
+
+.form-control:focus,
+.form-select:focus {
+border-color: var(--primary-color);
+box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.12);
+}
+
+/* ================================
+Empty Transaction Message
+================================ */
+
+.empty-message {
+text-align: center !important;
+padding: 30px !important;
+color: var(--text-secondary);
+}
+
+/* ================================
+Delete Button
+================================ */
+
+.delete-btn {
+font-size: 0.78rem;
+}
+
+/* ================================
+Bootstrap Row Compatibility
+================================ */
+
+.summary-cards {
+margin-left: 0;
+margin-right: 0;
+}
+
+/* ================================
+Mobile Improvements
+================================ */
+
+@media (max-width: 768px) {
+
+.header-content {
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo h1 {
+    font-size: 1.4rem;
+}
+
+.logo p {
+    font-size: 0.75rem;
+}
+
+.hamburger {
+    margin-left: auto;
+}
+
+.main-nav {
+    top: 100%;
+}
+
+.summary-card {
+    width: 100%;
+}
+
+.section-heading {
+    gap: 15px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+}
+
+/* ================================
+Small Mobile Screens
+================================ */
+
+@media (max-width: 480px) {
+
+main {
+    padding: 25px 0;
+}
+
+.container {
+    width: 94%;
+}
+
+.transaction-form-section,
+.transactions-section,
+.budget-section {
+    padding: 16px;
+}
+
+.summary-card {
+    padding: 18px;
+}
+
+.summary-card h3 {
+    font-size: 1rem;
+}
+
+.current-month {
+    font-size: 0.75rem;
+}
+
 }
