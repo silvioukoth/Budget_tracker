@@ -18,7 +18,6 @@ renderExpenses
 
 let transactions = [
 
-```
 {
     id: 1,
     name: "Salary",
@@ -72,7 +71,6 @@ let transactions = [
     type: "expense",
     date: "2026-09-02"
 }
-```
 
 ];
 
@@ -84,7 +82,6 @@ const monthlyBudget = 60000;
 
 const categoryBudgets = {
 
-```
 Food: 15000,
 
 Transport: 8000,
@@ -92,7 +89,6 @@ Transport: 8000,
 Rent: 15000,
 
 Education: 12000
-```
 
 };
 
@@ -162,7 +158,6 @@ new Date().getFullYear();
 
 function formatMoney(amount) {
 
-```
 return `KSh ${amount.toLocaleString(
     "en-KE",
     {
@@ -170,7 +165,6 @@ return `KSh ${amount.toLocaleString(
         maximumFractionDigits: 2
     }
 )}`;
-```
 
 }
 
@@ -180,7 +174,6 @@ return `KSh ${amount.toLocaleString(
 
 function updateDashboard() {
 
-```
 const income =
     calculateTotal(transactions, "income");
 
@@ -199,7 +192,6 @@ totalExpenses.textContent =
 
 remainingBalance.textContent =
     formatMoney(balance);
-```
 
 }
 
@@ -209,7 +201,6 @@ remainingBalance.textContent =
 
 function getFilteredTransactions() {
 
-```
 const selectedType =
     filterType.value;
 
@@ -232,7 +223,7 @@ return transactions.filter(transaction => {
     return matchesType && matchesCategory;
 
 });
-```
+
 
 }
 
@@ -242,7 +233,6 @@ return transactions.filter(transaction => {
 
 function updateTable() {
 
-```
 const filteredTransactions =
     getFilteredTransactions();
 
@@ -250,7 +240,7 @@ renderExpenses(
     filteredTransactions,
     transactionsList
 );
-```
+
 
 }
 
@@ -260,7 +250,6 @@ renderExpenses(
 
 function updateBudgetProgress() {
 
-```
 Object.entries(categoryBudgets).forEach(
     ([category, budget]) => {
 
@@ -313,7 +302,6 @@ Object.entries(categoryBudgets).forEach(
 
     }
 );
-```
 
 }
 
@@ -323,13 +311,11 @@ Object.entries(categoryBudgets).forEach(
 
 function updateApplication() {
 
-```
 updateDashboard();
 
 updateTable();
 
 updateBudgetProgress();
-```
 
 }
 
@@ -341,7 +327,6 @@ transactionForm.addEventListener(
 "submit",
 function(event) {
 
-```
     event.preventDefault();
 
 
@@ -420,7 +405,6 @@ function(event) {
     updateApplication();
 
 }
-```
 
 );
 
@@ -432,7 +416,6 @@ transactionsList.addEventListener(
 "click",
 function(event) {
 
-```
     if (
         !event.target.classList.contains(
             "delete-btn"
@@ -460,7 +443,6 @@ function(event) {
     updateApplication();
 
 }
-```
 
 );
 
@@ -486,7 +468,7 @@ clearAllButton.addEventListener(
 "click",
 function() {
 
-```
+
     if (transactions.length === 0) {
 
         return;
@@ -512,7 +494,7 @@ function() {
     updateApplication();
 
 }
-```
+
 
 );
 
@@ -530,7 +512,6 @@ hamburger.addEventListener(
 "click",
 function() {
 
-```
     mainNav.classList.toggle("active");
 
 
@@ -550,7 +531,7 @@ function() {
     );
 
 }
-```
+
 
 );
 
@@ -565,7 +546,6 @@ document.querySelectorAll(
 
 navLinks.forEach(link => {
 
-```
 link.addEventListener(
     "click",
     function() {
@@ -581,7 +561,7 @@ link.addEventListener(
 
     }
 );
-```
+
 
 });
 

@@ -9,7 +9,6 @@
 
 export function calculateTotal(transactions, type = null) {
 
-```
 const filteredTransactions = type
     ? transactions.filter(transaction => transaction.type === type)
     : transactions;
@@ -20,7 +19,6 @@ const total = filteredTransactions.reduce(
 );
 
 return Math.round(total * 100) / 100;
-```
 
 }
 
@@ -30,7 +28,6 @@ return Math.round(total * 100) / 100;
 
 export function renderExpenses(transactions, container) {
 
-```
 container.innerHTML = "";
 
 if (transactions.length === 0) {
@@ -111,6 +108,5 @@ transactions.forEach(transaction => {
     container.appendChild(row);
 
 });
-```
 
 }
